@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <script src="../lib/sea.js"></script>
+    <script src="../lib/jquery.js"></script>
+    <script>
+        seajs.config({
+            base: '../dist',
+            map: [
+                ['rRequest', 'rRequest-debug']
+            ]
+        })
+    </script>
+</head>
+<body>
+<script>
+seajs.use('rRequest', function (rRequest) {
+    rRequest.request('cgi.php',
+        {dataType: 'json'},
+        {maxAge:2000, strategy: rRequest.strategy.NETWORK_ONLY}).done(function (res) {
+        console.log(res);
+    }).fail(function () {
+        console.log(arguments)
+    })
+})
+</script>
+</body>
+</html>
