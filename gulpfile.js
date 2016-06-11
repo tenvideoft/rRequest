@@ -1,16 +1,10 @@
 var gulp = require('gulp'),
     mochaPhantomJs = require('gulp-mocha-phantomjs'),
-    transport = require('gulp-seajs-transport'),
     seajsCombo = require('gulp-seajs-combo'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     clean = require('gulp-clean');
 
-gulp.task('transport', function () {
-     return gulp.src('./src/**/*.js')
-        .pipe(transport())
-        .pipe(gulp.dest('.build'));
-});
 gulp.task('test', function () {
     return gulp.src('test/runner.html')
         .pipe(mochaPhantomJs());
