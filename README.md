@@ -1,2 +1,2 @@
-# rRequest
-A reliable request lib
+# rRequest —— Reliable Request
+在移动端受网络影响，会遇到偶发请求失败的情况，目前前端的做法会在请求成功时写一份localStorage，当请求失败时，从localStorage获取数据进行渲染，防止页面空白或报错。这样每个请求都会有类似的重复代码，rRequest将请求、写缓存、读缓存的逻辑封装起来，并提供灵活的配置，可根据传入的参数做出不出的请求策略，对用户而言只需要调取request方法，rRequest会根据策略来选择请求网络还是缓存，或是返回请求失败。
