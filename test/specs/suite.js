@@ -5,5 +5,6 @@
 define(function (require, exports, module) {
 'use strict';
 require('./url-spec');
-require('./util-spec');    
+require('./util-spec');
+require('./date-spec');
 });

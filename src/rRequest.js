@@ -73,10 +73,8 @@ function _genCacheKey(url, params) {
 
 module.exports = {
     request: _request,
-    strategy: {
-        CACHE_FIRST: CACHE_FIRST,
-        NETWORK_FIRST: NETWORK_FIRST,
-        NETWORK_ONLY: NETWORK_ONLY
-    }
+    CACHE_FIRST: CACHE_FIRST,
+    NETWORK_FIRST: NETWORK_FIRST,
+    NETWORK_ONLY: NETWORK_ONLY
 };
 });

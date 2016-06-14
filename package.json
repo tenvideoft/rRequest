@@ -1,10 +1,13 @@
 {
   "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-webdriver": "^1.2.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-mocha-phantomjs": "^0.11.0",
     "gulp-rename": "^1.2.2",
     "gulp-seajs-combo": "^1.2.3",
-    "gulp-uglify": "^1.5.3"
+    "gulp-uglify": "^1.5.3",
+    "selenium-webdriver": "^2.53.2"
   }
 }

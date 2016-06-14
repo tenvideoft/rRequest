@@ -17,7 +17,7 @@ function _trim(v) {
     return v.replace(/^\s+|\s+$/g, '');
 }
 function _buildUrl(url, params, useEncode) {
-    var p = '';
+    var queryStr = '';
 
     if (!url) {
         throw new Error('[util.url.buildUrl]url is required');
@@ -25,36 +25,39 @@ function _buildUrl(url, params, useEncode) {
     if (!params || params === null) {
         return url;
     }
-    useEncode = useEncode !== undefined ? useEncode : false;
-    p = _buildParams(params, useEncode);
-    if (!p || !p.length) {
+    queryStr = _buildParams(params, useEncode);
+    if (!queryStr || !queryStr.length) {
         return url;
     }
-    return [url , (url.indexOf('?') > -1 ? '&' : '?') , p].join('');
+    return [url , (url.indexOf('?') > -1 ? '&' : '?') , queryStr].join('');
 }
 function _buildParams(params, useEncode) {
-    var k, v, p, r = [];
+    var k, v, query, r = [];
     for (k in params) {
         v = params[k];
-        p = _buildParam(k, v, useEncode);
-        if (p != null && p != '') {
-            r.push(p);
+        query = _buildParam(k, v, useEncode);
+        if (query != null && query !== '') {
+            r.push(query);
         }
     }
     return r.join('&');
 }
 function _buildParam(k, v, useEncode) {
     var type = typeof v,
-        p,
+        prop,
         i = 0,
         len,
         r = [];
+
+    if (v === '') {
+        return '';
+    }
     if (type == 'number' || type == 'string' || type == 'boolean') {
         return [k, useEncode ? encodeURIComponent(v) : v].join('=');
     }
     if (_isObject(v)) {
-        for (p in v) {
-            r.push(_buildParam([k, '[', p, ']'].join(''), v[p], useEncode));
+        for (prop in v) {
+            r.push(_buildParam([k, '[', prop, ']'].join(''), v[prop], useEncode));
         }
     } else if (Array.isArray(v)) {
         for (len=v.length; i<len; i++) {

@@ -9,7 +9,7 @@
         seajs.config({
             base: '../dist',
             map: [
-                ['rRequest', 'rRequest-debug']
+                ['rRequest.js', 'rRequest-debug.js']
             ]
         })
     </script>
@@ -19,7 +19,7 @@
 seajs.use('rRequest', function (rRequest) {
     rRequest.request('cgi.php',
         {dataType: 'json'},
-        {maxAge:2000, strategy: rRequest.strategy.NETWORK_ONLY}).done(function (res) {
+        {maxAge:2000, strategy: rRequest.NETWORK_ONLY}).done(function (res) {
         console.log(res);
     }).fail(function () {
         console.log(arguments)
