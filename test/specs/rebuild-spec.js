@@ -20,5 +20,8 @@ describe('rebuild aid', function () {
     it('rebuild when missing both level and value', function () {
         expect(rebuild.build(missLevelAndValueAid)).to.equal('$2:$1:1$15:wx.user$3:$14:14abc');
     });
+    it('rebuild when original aid with non-ordered level', function () {
+        expect(rebuild.build('$1:6$2:1000$4:7$11:8$5:sdy')).to.equal('$2:1000$4:7$5:sdy$1:6$11:8');
+    });
 });
 });
