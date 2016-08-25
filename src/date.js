@@ -20,15 +20,21 @@ function _isEmptyObject(v) {
     return _isObject(v) && !Object.keys(v).length;
 }
 
-var DEFAULT_FORMAT = 'Y-m-d H:i:s',
+var DEFAULT_FORMAT = 'Y-mm-dd H:i:s',
     _patternMap = {
         Y: function(d) {
             return d.getFullYear();
         },
         m: function(d) {
+            return d.getMonth() + 1;
+        },
+        mm: function(d) {
             return _pad(d.getMonth() + 1);
         },
-        d: function(d) {
+        d: function (d) {
+            return d.getDate();
+        },
+        dd: function(d) {
             return _pad(d.getDate());
         },
         H: function(d) {
@@ -76,8 +82,11 @@ function _generatePatternReg(patternMap) {
     for (k in patternMap) {
         patterns.push(k);
     }
+    patterns.sort(function (a, b) {
+        return b.length - a.length;
+    });
 
-    return new RegExp('[' + patterns.join('') + ']', 'g');
+    return new RegExp('(' + patterns.join('|') + ')', 'g');
 }
 function _mergePatternMap(patternMap) {
     var map,
